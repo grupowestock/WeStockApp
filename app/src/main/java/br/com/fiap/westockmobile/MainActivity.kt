@@ -1,0 +1,35 @@
+package br.com.fiap.westockmobile
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
+import br.com.fiap.westockmobile.component.Navigate
+import br.com.fiap.westockmobile.model.EmailViewModel
+import br.com.fiap.westockmobile.model.UsuarioViewModel
+import br.com.fiap.westockmobile.ui.theme.WeStockMobileTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            WeStockMobileTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    val usuarioViewModel: UsuarioViewModel = viewModel()
+                    val emailViewModel: EmailViewModel = viewModel()
+                    val usuarioId = emailViewModel.email.value
+
+                    Navigate(usuarioId = usuarioId, usuarioViewModel = usuarioViewModel)
+                }
+            }
+        }
+    }
+}
