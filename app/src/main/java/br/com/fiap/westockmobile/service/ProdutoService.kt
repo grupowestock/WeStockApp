@@ -16,7 +16,7 @@ interface ProdutoService {
     fun getProduto(@Path("id") id: Long): Call<Produto>
 
     @POST("produtos")
-    fun createProduto(@Body produto: Produto): Call<Produto>
+    fun createProduto(userId: Long, @Body produto: Produto): Call<Produto>
 
     @GET("produtos/ultimos/{userId}")
     fun getUltimosProdutos(@Path("userId") userId: Long): Call<List<Produto>>

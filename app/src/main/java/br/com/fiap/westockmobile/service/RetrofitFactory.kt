@@ -21,7 +21,5 @@ object RetrofitInstance {
         retrofit.create(ProdutoService::class.java)
     }
 
-    val produtoVendidoService: ProdutoVendidoService by lazy {
-        retrofit.create(ProdutoVendidoService::class.java)
-    }
+
 }

@@ -28,4 +28,34 @@ class ProdutoRepository {
             }
         })
     }
+
+    fun fetchUltimosProdutos(userId: Long) {
+        produtoService.getUltimosProdutos(userId).enqueue(object : Callback<List<Produto>> {
+            override fun onResponse(call: Call<List<Produto>>, response: Response<List<Produto>>) {
+                if (response.isSuccessful) {
+                    _produtos.postValue(response.body())
+                }
+            }
+
+            override fun onFailure(call: Call<List<Produto>>, t: Throwable) {
+                // Trate o erro
+            }
+        })
+    }
+
+    fun createProduto(userId: Long, produto: Produto, callback: (Produto?) -> Unit) {
+        produtoService.createProduto(userId, produto).enqueue(object : Callback<Produto> {
+            override fun onResponse(call: Call<Produto>, response: Response<Produto>) {
+                if (response.isSuccessful) {
+                    callback(response.body())
+                } else {
+                    callback(null)
+                }
+            }
+
+            override fun onFailure(call: Call<Produto>, t: Throwable) {
+                callback(null)
+            }
+        })
+    }
 }
