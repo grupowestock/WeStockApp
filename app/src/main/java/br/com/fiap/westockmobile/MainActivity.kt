@@ -11,6 +11,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import br.com.fiap.westockmobile.component.Navigate
 import br.com.fiap.westockmobile.model.EmailViewModel
 import br.com.fiap.westockmobile.model.UsuarioViewModel
+import br.com.fiap.westockmobile.model.UsuarioViewModelFactory
 import br.com.fiap.westockmobile.repository.UsuarioRepository
 import br.com.fiap.westockmobile.service.RetrofitInstance
 import br.com.fiap.westockmobile.ui.theme.WeStockMobileTheme
@@ -25,12 +26,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val usuarioViewModel: UsuarioViewModel = viewModel()
-                    val emailViewModel: EmailViewModel = viewModel()
                     val usuarioRepository = UsuarioRepository(RetrofitInstance.usuarioService)
-                    val usuarioId = emailViewModel.email.value?.toLongOrNull() ?: 0L
+                    val usuarioViewModelFactory = UsuarioViewModelFactory(usuarioRepository)
+                    val usuarioViewModel: UsuarioViewModel = viewModel(factory = usuarioViewModelFactory)
+                    val emailViewModel: EmailViewModel = viewModel()
+                    val usuarioId = emailViewModel.email.value.toLongOrNull() ?: 0L
 
-                    Navigate(usuarioId = usuarioId, usuarioViewModel = usuarioViewModel, usuarioRepository = usuarioRepository)
+                    Navigate(usuarioId = usuarioId, usuarioRepository = usuarioRepository)
                 }
             }
         }

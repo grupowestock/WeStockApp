@@ -26,17 +26,31 @@ import br.com.fiap.westockmobile.database.repository.ProdutoRepository
 import br.com.fiap.westockmobile.ui.theme.Poppins
 import br.com.fiap.westockmobile.model.UsuarioViewModel
 import androidx.compose.runtime.livedata.observeAsState
+import br.com.fiap.westockmobile.model.UsuarioViewModelFactory
+import br.com.fiap.westockmobile.repository.UsuarioRepository
+import br.com.fiap.westockmobile.service.RetrofitInstance
 import coil.compose.rememberImagePainter
 
 @Composable
-fun MainScreen(navController: NavHostController, usuarioId: Long, usuarioViewModel: UsuarioViewModel = viewModel()) {
+fun MainScreen(
+    navController: NavHostController,
+    usuarioId: Long,
+    usuarioViewModel: UsuarioViewModel
+) {
+    val usuarioRepository = remember { UsuarioRepository(RetrofitInstance.usuarioService) }
+    val usuarioViewModel: UsuarioViewModel = viewModel(
+        factory = UsuarioViewModelFactory(usuarioRepository)
+    )
+
     LaunchedEffect(usuarioId) {
         usuarioViewModel.fetchUsuario(usuarioId)
     }
 
     val usuario by usuarioViewModel.usuario.observeAsState()
 
-    Box(modifier = Modifier.fillMaxSize().background(Color.White)) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(Color.White)) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
