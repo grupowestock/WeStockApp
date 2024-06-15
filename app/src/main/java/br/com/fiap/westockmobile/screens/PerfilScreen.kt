@@ -21,13 +21,15 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import br.com.fiap.westockmobile.R
-import br.com.fiap.westockmobile.model.Usuario
 import br.com.fiap.westockmobile.model.UsuarioViewModel
+import br.com.fiap.westockmobile.model.UsuarioViewModelFactory
+import br.com.fiap.westockmobile.repository.UsuarioRepository
 import br.com.fiap.westockmobile.ui.theme.Poppins
 import br.com.fiap.westockmobile.ui.theme.Raleway
 
 @Composable
-fun PerfilScreen(navController: NavHostController, usuarioViewModel: UsuarioViewModel = viewModel()) {
+fun PerfilScreen(navController: NavHostController, usuarioRepository: UsuarioRepository) {
+    val usuarioViewModel: UsuarioViewModel = viewModel(factory = UsuarioViewModelFactory(usuarioRepository))
     val usuario by usuarioViewModel.usuario.observeAsState()
 
     var nome by remember { mutableStateOf(usuario?.nome ?: "") }

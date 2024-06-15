@@ -77,7 +77,7 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     implementation ("androidx.lifecycle:lifecycle-runtime-compose:2.4.0")
     implementation ("io.coil-kt:coil-compose:2.0.0")
-
+    implementation("com.jakewharton.timber:timber:5.0.1")
 
 
 }

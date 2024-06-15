@@ -24,10 +24,10 @@ fun Navigate(usuarioId: Long, usuarioRepository: UsuarioRepository) {
         composable("login") { LoginScreen(navController) }
         composable("criarConta") { CriarContaScreen(navController) }
         composable("mainScreen") { MainScreen(navController, usuarioId, usuarioViewModel) }
-        composable("menuScreen") { MenuScreen(navController) }
+        composable("menuScreen") { MenuScreen(navController, usuarioViewModel) }
         composable("redefinirSenhaEmail") { RedefinirSenhaEmailScreen(navController, usuarioRepository) }
         composable("redefinirSenha") { RedefinirSenhaScreen(navController, usuarioRepository) }
-        composable("perfil") { PerfilScreen(navController) }
+        composable("perfil") { PerfilScreen(navController, usuarioRepository) }
         composable("produtos") { ProdutosScreen(navController, usuarioId) }
         composable("edicaoProduto") { EdicaoProdutoScreen(navController, usuarioId) }
         composable("whatsScreen") { WhatsScreen() }

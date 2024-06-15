@@ -1,6 +1,7 @@
 package br.com.fiap.westockmobile.model
 
 data class Produto(
+    val userId: Long? = null,
     val id: Long? = null,
     val categoria: String,
     val descricao: String,

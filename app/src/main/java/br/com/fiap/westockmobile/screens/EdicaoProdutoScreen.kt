@@ -62,7 +62,7 @@ fun EdicaoProdutoScreen(navController: NavHostController, userId: Long, produtoR
                     Icon(
                         painter = painterResource(id = R.drawable.exiticon),
                         contentDescription = "Exit Icon",
-                        modifier = Modifier.size(24.dp).clickable { navController.navigate("produtosScreen") }
+                        modifier = Modifier.size(24.dp).clickable { navController.navigate("produtos") }
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
@@ -132,7 +132,7 @@ fun EdicaoProdutoScreen(navController: NavHostController, userId: Long, produtoR
                         .height(40.dp),
                     onClick = {
                         val produto = Produto(
-                            id = null, // Defina o ID conforme necessário
+                            id = 1, // Defina o ID conforme necessário
                             categoria = categoria,
                             quantidade = quantidade.toIntOrNull() ?: 0,
                             descricao = descricao,
@@ -149,7 +149,7 @@ fun EdicaoProdutoScreen(navController: NavHostController, userId: Long, produtoR
                         )
                         produtoRepository.createProduto(userId, produto) { novoProduto ->
                             if (novoProduto != null) {
-                                navController.navigate("produtosScreen")
+                                navController.navigate("produtos")
                             } else {
                                 errorMessage = "Erro ao cadastrar produto"
                             }
@@ -164,7 +164,7 @@ fun EdicaoProdutoScreen(navController: NavHostController, userId: Long, produtoR
                     modifier = Modifier
                         .fillMaxWidth(0.7f)
                         .height(40.dp),
-                    onClick = { navController.navigate("produtosScreen") },
+                    onClick = { navController.navigate("produtos") },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Gray)
                 ) {
                     Text("Voltar", color = Color.White, fontWeight = FontWeight.Normal, fontSize = 16.sp, fontFamily = Poppins)

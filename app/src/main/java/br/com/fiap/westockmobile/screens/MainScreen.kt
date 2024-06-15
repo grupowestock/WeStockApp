@@ -183,7 +183,7 @@ fun MainScreen(
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Button(
-                    onClick = { /* Handle add product click */ },
+                    onClick = { navController.navigate("edicaoProduto") },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF25D366)),
                     shape = RoundedCornerShape(15.dp)
                 ) {
@@ -264,9 +264,9 @@ fun BottomNavigationBar3(navController: NavHostController) {
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        BottomNavigationIcon3(navController, painterResource(id = R.drawable.perfilicon), "Profile", "perfilScreen")
+        BottomNavigationIcon3(navController, painterResource(id = R.drawable.perfilicon), "Profile", "perfil")
         BottomNavigationIcon3(navController, painterResource(id = R.drawable.homeicon), "Home", "mainScreen")
-        BottomNavigationIcon3(navController, painterResource(id = R.drawable.cloudicon), "Cloud", "produtosScreen")
+        BottomNavigationIcon3(navController, painterResource(id = R.drawable.cloudicon), "Cloud", "produtos")
     }
 }
 

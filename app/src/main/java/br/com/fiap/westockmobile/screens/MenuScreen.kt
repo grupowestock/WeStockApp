@@ -17,10 +17,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.com.fiap.westockmobile.R
+import br.com.fiap.westockmobile.model.UsuarioViewModel
 import br.com.fiap.westockmobile.ui.theme.Poppins
 
 @Composable
-fun MenuScreen(navController: NavHostController) {
+fun MenuScreen(navController: NavHostController, usuarioViewModel: UsuarioViewModel) {
     var showDialog by remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxSize().background(Color.White)) {
@@ -48,9 +49,9 @@ fun MenuScreen(navController: NavHostController) {
                     modifier = Modifier.align(Alignment.Start).size(100.dp)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                MenuButton(navController, text = "Perfil", destination = "perfilScreen")
+                MenuButton(navController, text = "Perfil", destination = "perfil")
                 Spacer(modifier = Modifier.height(16.dp))
-                MenuButton(navController, text = "Produtos", destination = "produtosScreen")
+                MenuButton(navController, text = "Produtos", destination = "produtos")
             }
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Row(
@@ -83,9 +84,9 @@ fun MenuScreen(navController: NavHostController) {
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    BottomNavigationIcon(painterResource(id = R.drawable.perfilicon), "Profile", Modifier.size(36.dp))  // Reduzido 10%
-                    BottomNavigationIcon(painterResource(id = R.drawable.homeicon), "Home", Modifier.size(36.dp))  // Reduzido 10%
-                    BottomNavigationIcon(painterResource(id = R.drawable.cloudicon), "Cloud", Modifier.size(36.dp))  // Reduzido 10%
+                    BottomNavigationIcon(painterResource(id = R.drawable.perfilicon), "Profile", Modifier.size(36.dp),"perfil")  // Reduzido 10%
+                    BottomNavigationIcon(painterResource(id = R.drawable.homeicon), "Home", Modifier.size(36.dp),"mainScreen")  // Reduzido 10%
+                    BottomNavigationIcon(painterResource(id = R.drawable.cloudicon), "Cloud", Modifier.size(36.dp),"produtos")  // Reduzido 10%
                 }
             }
         }
@@ -135,12 +136,12 @@ fun MenuButton(navController: NavHostController, text: String, destination: Stri
 }
 
 @Composable
-fun BottomNavigationIcon(icon: Painter, contentDescription: String, modifier: Modifier = Modifier) {
+fun BottomNavigationIcon(icon: Painter, contentDescription: String, modifier: Modifier = Modifier, destination: String) {
     Icon(
         painter = icon,
         contentDescription = contentDescription,
         modifier = modifier
-            .clickable { /* Handle navigation click */ }
+            .clickable { destination }
     )
 }
 
