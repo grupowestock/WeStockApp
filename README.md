@@ -3,7 +3,7 @@
 
 ## Descrição
 
-WeStock é uma aplicação abrangente e integrada desenvolvida para nosso projeto da faculdade FIAP.
+WeStock é uma aplicação abrangente e integrada desenvolvida para nosso projeto da faculdade FIAP, com aplicações web e mobile.
 
 Desenvolvido para facilitar o controle de qualquer tipo de estoque e inventário de forma inteligente e eficaz, possui uma interface simples e de fácil aprendizado e aplicação.
 
