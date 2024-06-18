@@ -1,4 +1,4 @@
-# WeStock-GrandFinale
+# WeStockApp
 
 
 ## Descrição
